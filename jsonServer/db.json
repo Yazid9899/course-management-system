@@ -1,0 +1,13 @@
+{
+    "Students": [
+      {"id": 1, "name": "John", "birth": "09/08/2010"},
+      {"id": 2, "name": "Doe", "birth": "09/02/2009"},
+      {"id": 3, "name": "Brody", "birth": "09/08/2011"},
+      {"id": 4, "name": "Mellisa", "birth": "09/08/2009"},
+      {"id": 5, "name": "Alice", "birth": "09/08/2011"}
+    ],
+    "Courses": [
+      {"id": 1, "name": "Math" , "students": [1,2,3]}
+    ]
+
+}
