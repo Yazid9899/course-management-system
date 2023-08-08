@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { View, Text } from "react-native";
+import { View, Text, StyleSheet, FlatList } from "react-native";
+import StudentRow from "../components/StudentRow";
 
 const Student = () => {
   const [students, setStudent] = useState([]);
@@ -9,8 +10,9 @@ const Student = () => {
   const fetchStudent = async () => {
     try {
       const { data } = await axios.get(
-        "https://bbe8-103-136-59-170.ngrok-free.app/Students"
+        "https://4eea-103-136-59-170.ngrok-free.app/Students"
       );
+      console.log(data);
       setStudent(data);
       setLoading(false);
     } catch (err) {
@@ -23,16 +25,45 @@ const Student = () => {
     fetchStudent();
   }, []);
 
+  if (loading)
+    return (
+      <View>
+        <Text>LOADING..</Text>
+      </View>
+    );
   return (
     <View>
-      <Text>Student Screen!</Text>
-      {loading ? (
-        <Text>Loading...</Text>
-      ) : (
-        students.map((student) => <Text key={student.id}>{student.name}</Text>)
-      )}
+      <View style={styles.headerRow}>
+        <Text style={styles.idCell}>ID</Text>
+        <Text style={styles.headerCell}>Name</Text>
+        <Text style={styles.headerCell}>Date of Birth</Text>
+        <Text style={styles.headerCell}>Action</Text>
+      </View>
+      <FlatList
+        data={students}
+        renderItem={({ item }) => <StudentRow student={item} />}
+        keyExtractor={(item) => item?.id.toString()}
+      />
     </View>
   );
 };
 
+const styles = StyleSheet.create({
+  headerRow: {
+    flexDirection: "row",
+    backgroundColor: "#f1f8ff",
+    paddingVertical: 10,
+    borderBottomWidth: 1,
+    borderBottomColor: "#ccc",
+  },
+  headerCell: {
+    flex: 1,
+    fontWeight: "bold",
+  },
+  idCell: {
+    fontWeight: "bold",
+    textAlign: "left",
+    marginHorizontal: 10,
+  },
+});
 export default Student;

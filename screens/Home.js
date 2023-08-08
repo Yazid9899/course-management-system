@@ -11,7 +11,7 @@ const Home = () => {
       <TouchableOpacity
         style={styles.button}
         onPress={() => {
-          changeScreen("Student");
+          changeScreen("Students");
         }}
       >
         <Text style={styles.buttonText}>Student</Text>

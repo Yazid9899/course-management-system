@@ -12,7 +12,20 @@ export default function App() {
     <NavigationContainer>
       <Stack.Navigator>
         <Stack.Screen name="home" component={Home} />
-        <Stack.Screen name="Student" component={Student} />
+        <Stack.Screen
+          name="Students"
+          component={Student}
+          options={({ navigation }) => ({
+            headerRight: () => (
+              <Text
+                style={styles.headerButton}
+                onPress={() => navigation.navigate("AddStudent")}
+              >
+                Add Student
+              </Text>
+            ),
+          })}
+        />
         <Stack.Screen name="Course" component={Course} />
       </Stack.Navigator>
     </NavigationContainer>
