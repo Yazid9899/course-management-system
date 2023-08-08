@@ -1,9 +1,14 @@
 import React from "react";
 import { Text, View, StyleSheet, TouchableOpacity, Image } from "react-native";
 import styles from "./style";
+import { useNavigation } from "@react-navigation/native";
 const deleteIcon = require("../assets/delete-icon.png");
 const editIcon = require("../assets/edit-icon.png");
-const StudentRow = ({ student, handleEdit, handleDelete }) => {
+const StudentRow = ({ student }) => {
+  const navigation = useNavigation();
+  const handleEdit = () => {
+    navigation.push("StudentForm", { student });
+  };
   return (
     <View style={styles.studentRow}>
       <View style={styles.idCell}>
@@ -17,7 +22,11 @@ const StudentRow = ({ student, handleEdit, handleDelete }) => {
       </View>
       <View style={styles.cell}>
         <View style={styles.buttonContainer}>
-          <TouchableOpacity onPress={() => {}}>
+          <TouchableOpacity
+            onPress={() => {
+              handleEdit();
+            }}
+          >
             <Image
               source={editIcon}
               style={styles.button}
