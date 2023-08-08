@@ -10,6 +10,7 @@ import {
 import DateTimePicker from "@react-native-community/datetimepicker";
 import axios from "axios";
 import { useNavigation, useRoute } from "@react-navigation/native";
+import BASE_URL from "../config/baseurl";
 
 const StudentFormScreen = () => {
   const navigation = useNavigation();
@@ -22,17 +23,17 @@ const StudentFormScreen = () => {
   const handleAddStudent = async () => {
     try {
       if (!route.params) {
-        const { data } = await axios.post(
-          "https://4eea-103-136-59-170.ngrok-free.app/Students",
-          { name, birth }
-        );
+        await axios.post(`${BASE_URL}/Students`, {
+          name,
+          birth,
+        });
       } else {
-        const { data } = await axios.put(
-          `https://4eea-103-136-59-170.ngrok-free.app/Students/${route.params.student.id}`,
-          { name, birth }
-        );
+        await axios.put(`${BASE_URL}/Students/${route.params.student.id}`, {
+          name,
+          birth,
+        });
       }
-      navigation.push("Students");
+      navigation.goBack();
     } catch (err) {
       console.log(err);
     }

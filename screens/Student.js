@@ -1,7 +1,9 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { View, Text, StyleSheet, FlatList } from "react-native";
 import StudentRow from "../components/StudentRow";
+import { useFocusEffect } from "@react-navigation/native";
+import BASE_URL from "../config/baseurl";
 
 const Student = () => {
   const [students, setStudent] = useState([]);
@@ -9,10 +11,7 @@ const Student = () => {
 
   const fetchStudent = async () => {
     try {
-      const { data } = await axios.get(
-        "https://4eea-103-136-59-170.ngrok-free.app/Students"
-      );
-      console.log(data);
+      const { data } = await axios.get(`${BASE_URL}/Students`);
       setStudent(data);
       setLoading(false);
     } catch (err) {
@@ -21,9 +20,11 @@ const Student = () => {
     }
   };
 
-  useEffect(() => {
-    fetchStudent();
-  }, []);
+  useFocusEffect(
+    React.useCallback(() => {
+      fetchStudent();
+    }, [])
+  );
 
   if (loading)
     return (
