@@ -11,7 +11,7 @@ const StudentRow = ({ student, fetchStudent }) => {
   const navigation = useNavigation();
 
   const handleEdit = () => {
-    navigation.push("StudentForm", { student });
+    navigation.push("FormStudent", { student });
   };
 
   const handleDelete = async () => {
