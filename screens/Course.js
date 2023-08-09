@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useState } from "react";
-import { View, StyleSheet, FlatList } from "react-native";
+import { View, FlatList } from "react-native";
 import BASE_URL from "../config/baseurl";
 import { useFocusEffect } from "@react-navigation/native";
 import CourseCard from "../components/CourseCard";

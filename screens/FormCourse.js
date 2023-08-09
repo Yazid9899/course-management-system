@@ -1,11 +1,7 @@
-import {
-  useFocusEffect,
-  useNavigation,
-  useRoute,
-} from "@react-navigation/native";
+import { useNavigation, useRoute } from "@react-navigation/native";
 import axios from "axios";
 import React, { useState, useEffect } from "react";
-import { ScrollView, StyleSheet, View } from "react-native";
+import { ScrollView, View } from "react-native";
 import { Button, Checkbox, List, TextInput } from "react-native-paper";
 import BASE_URL from "../config/baseurl";
 

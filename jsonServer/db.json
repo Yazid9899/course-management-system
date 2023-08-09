@@ -8,7 +8,7 @@
     {
       "id": 2,
       "name": "Doe",
-      "birth": "09/08/2011"
+      "birth": "19/04/2011"
     },
     {
       "id": 3,
@@ -26,7 +26,7 @@
       "birth": "09/08/2011"
     },
     {
-      "name": "Djdjdhd",
+      "name": "Bruno",
       "birth": "09/11/2030",
       "id": 6
     }
@@ -52,7 +52,7 @@
       "id": 2
     },
     {
-      "name": "asdasdasd",
+      "name": "Science",
       "studentsId": [
         5,
         4
@@ -60,7 +60,7 @@
       "id": 3
     },
     {
-      "name": "baru",
+      "name": "Geography",
       "studentsId": [
         2,
         1,
@@ -72,7 +72,7 @@
       "id": 4
     },
     {
-      "name": "Courses baru",
+      "name": "History",
       "studentsId": [
         2,
         1,
