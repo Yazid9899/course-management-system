@@ -1,0 +1,87 @@
+{
+  "Students": [
+    {
+      "id": 1,
+      "name": "John",
+      "birth": "09/08/2001"
+    },
+    {
+      "id": 2,
+      "name": "Doe",
+      "birth": "19/04/2011"
+    },
+    {
+      "id": 3,
+      "name": "Brody",
+      "birth": "09/08/2011"
+    },
+    {
+      "name": "Mellisa",
+      "birth": "09/08/2009",
+      "id": 4
+    },
+    {
+      "id": 5,
+      "name": "Alice",
+      "birth": "09/08/2011"
+    },
+    {
+      "name": "Bruno",
+      "birth": "09/11/2030",
+      "id": 6
+    }
+  ],
+  "Courses": [
+    {
+      "name": "Math",
+      "studentsId": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "id": 1
+    },
+    {
+      "name": "English",
+      "studentsId": [
+        4,
+        1,
+        5
+      ],
+      "id": 2
+    },
+    {
+      "name": "Science",
+      "studentsId": [
+        5,
+        4
+      ],
+      "id": 3
+    },
+    {
+      "name": "Geography",
+      "studentsId": [
+        2,
+        1,
+        3,
+        4,
+        5,
+        6
+      ],
+      "id": 4
+    },
+    {
+      "name": "History",
+      "studentsId": [
+        2,
+        1,
+        4,
+        5,
+        6,
+        3
+      ],
+      "id": 5
+    }
+  ]
+}
