@@ -32,6 +32,7 @@ const Student = () => {
         <Text>LOADING..</Text>
       </View>
     );
+
   return (
     <View>
       <View style={styles.headerRow}>

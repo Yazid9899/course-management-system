@@ -43,13 +43,14 @@
   ],
   "Courses": [
     {
-      "id": 1,
       "name": "Math",
       "studentsId": [
         1,
         2,
-        3
-      ]
+        3,
+        4
+      ],
+      "id": 1
     },
     {
       "id": 2,

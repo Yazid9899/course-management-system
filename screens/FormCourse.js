@@ -1,15 +1,23 @@
-import { useFocusEffect, useNavigation } from "@react-navigation/native";
+import {
+  useFocusEffect,
+  useNavigation,
+  useRoute,
+} from "@react-navigation/native";
 import axios from "axios";
-import React, { useState } from "react";
-import { FlatList, ScrollView, StyleSheet, View } from "react-native";
+import React, { useState, useEffect } from "react";
+import { ScrollView, StyleSheet, View } from "react-native";
 import { Button, Checkbox, List, Text, TextInput } from "react-native-paper";
 import BASE_URL from "../config/baseurl";
 
 const FormCourse = () => {
-  const navigate = useNavigation();
+  const route = useRoute();
+  const navigation = useNavigation();
   const [students, setStudent] = useState([]);
   const [selectedStudents, setSelectedStudents] = useState([]);
   const [courseName, setCourseName] = useState("");
+
+  const courseId = route.params?.id;
+  const editMode = !!courseId;
 
   const handleSelect = (studentId) => {
     if (selectedStudents.includes(studentId)) {
@@ -18,33 +26,45 @@ const FormCourse = () => {
       setSelectedStudents([...selectedStudents, studentId]);
     }
   };
+
   const handleSubmit = async () => {
     try {
-      const { data } = await axios.post(`${BASE_URL}/Courses`, {
+      const courseData = {
         name: courseName,
         studentsId: selectedStudents,
-      });
-      console.log(data);
-      navigate.goBack();
-    } catch (err) {
-      console.log(err);
-    }
-  };
-  const fetchStudent = async () => {
-    try {
-      const { data } = await axios.get(`${BASE_URL}/Students`);
-      setStudent(data);
-      console.log(data);
+      };
+
+      if (editMode) {
+        await axios.put(`${BASE_URL}/Courses/${courseId}`, courseData);
+      } else {
+        await axios.post(`${BASE_URL}/Courses`, courseData);
+      }
+
+      navigation.goBack();
     } catch (err) {
       console.log(err);
     }
   };
 
-  useFocusEffect(
-    React.useCallback(() => {
-      fetchStudent();
-    }, [])
-  );
+  const fetchStudent = async () => {
+    try {
+      const { data } = await axios.get(`${BASE_URL}/Students`);
+      setStudent(data);
+
+      if (editMode) {
+        const initialSelectedStudents = route.params.studentsId || [];
+        setSelectedStudents(initialSelectedStudents);
+        setCourseName(route.params.name || "");
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  useEffect(() => {
+    fetchStudent();
+  }, []);
+
   return (
     <View style={styles.formContainer}>
       <TextInput
@@ -53,7 +73,7 @@ const FormCourse = () => {
         onChangeText={setCourseName}
       />
       <List.Section title="Students:">
-        <List.Accordion title="select student here  ">
+        <List.Accordion title="Select students here">
           <ScrollView style={styles.scrollView}>
             {students.map((student) => (
               <List.Item
@@ -76,7 +96,7 @@ const FormCourse = () => {
         </List.Accordion>
       </List.Section>
       <Button mode="contained" onPress={handleSubmit}>
-        Add Course
+        {editMode ? "Update Course" : "Add Course"}
       </Button>
     </View>
   );

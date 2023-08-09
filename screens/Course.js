@@ -44,7 +44,6 @@ const Course = () => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.heading}>Course List:</Text>
       <FlatList
         data={courses}
         renderItem={({ item }) => (
