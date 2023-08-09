@@ -1,50 +1,42 @@
 import { useNavigation } from "@react-navigation/native";
-import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
+import { View, Text, TouchableOpacity } from "react-native";
+import createStyles from "./style/Home.style";
+import { Button } from "react-native-paper";
+import styles from "./style/Home.style";
 
 const Home = () => {
   const navigation = useNavigation();
+
   const changeScreen = (name) => {
     navigation.push(name);
   };
+
   return (
     <View style={styles.container}>
-      <TouchableOpacity
+      <Button
         style={styles.button}
+        labelStyle={styles.buttonText}
         onPress={() => {
           changeScreen("Students");
         }}
+        icon="account-group"
+        mode="contained-tonal"
       >
-        <Text style={styles.buttonText}>Student</Text>
-      </TouchableOpacity>
-      <TouchableOpacity
+        Student
+      </Button>
+      <Button
         style={styles.button}
+        labelStyle={styles.buttonText}
         onPress={() => {
-          changeScreen("Course");
+          changeScreen("Courses");
         }}
+        icon="book-open-variant"
+        mode="contained-tonal"
       >
-        <Text style={styles.buttonText}>Course</Text>
-      </TouchableOpacity>
+        Course
+      </Button>
     </View>
   );
 };
 
 export default Home;
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  button: {
-    backgroundColor: "#334257",
-    padding: 20,
-    borderRadius: 10,
-    marginBottom: 20,
-  },
-  buttonText: {
-    color: "white",
-    fontSize: 18,
-    fontWeight: "bold",
-    textAlign: "center",
-  },
-});

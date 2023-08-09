@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { View, Text, StyleSheet, FlatList } from "react-native";
+import { ActivityIndicator, DataTable } from "react-native-paper";
 import StudentRow from "../components/StudentRow";
 import { useFocusEffect } from "@react-navigation/native";
 import BASE_URL from "../config/baseurl";
@@ -28,46 +28,27 @@ const Student = () => {
 
   if (loading)
     return (
-      <View>
-        <Text>LOADING..</Text>
-      </View>
+      <ActivityIndicator
+        style={{ top: 170 }}
+        animating={true}
+        color="#000080"
+        size={70}
+      />
     );
 
   return (
-    <View>
-      <View style={styles.headerRow}>
-        <Text style={styles.idCell}>ID</Text>
-        <Text style={styles.headerCell}>Name</Text>
-        <Text style={styles.headerCell}>Date of Birth</Text>
-        <Text style={styles.headerCell}>Action</Text>
-      </View>
-      <FlatList
-        data={students}
-        renderItem={({ item }) => (
-          <StudentRow student={item} fetchStudent={fetchStudent} />
-        )}
-        keyExtractor={(item) => item?.id.toString()}
-      />
-    </View>
+    <DataTable>
+      <DataTable.Header>
+        <DataTable.Title>No</DataTable.Title>
+        <DataTable.Title style={{ right: 50 }}>Name</DataTable.Title>
+        <DataTable.Title style={{ right: 60 }}>Date of birth</DataTable.Title>
+        <DataTable.Title>Actions</DataTable.Title>
+      </DataTable.Header>
+      {students.map((item, index) => (
+        <StudentRow student={item} fetchStudent={fetchStudent} />
+      ))}
+    </DataTable>
   );
 };
 
-const styles = StyleSheet.create({
-  headerRow: {
-    flexDirection: "row",
-    backgroundColor: "#f1f8ff",
-    paddingVertical: 10,
-    borderBottomWidth: 1,
-    borderBottomColor: "#ccc",
-  },
-  headerCell: {
-    flex: 1,
-    fontWeight: "bold",
-  },
-  idCell: {
-    fontWeight: "bold",
-    textAlign: "left",
-    marginHorizontal: 10,
-  },
-});
 export default Student;

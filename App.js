@@ -1,45 +1,70 @@
 import { NavigationContainer, useNavigation } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet } from "react-native";
 import Home from "./screens/Home";
 import Student from "./screens/Student";
 import Course from "./screens/Course";
 import StudentFormScreen from "./screens/FormStudent";
 import FormCourse from "./screens/FormCourse";
-import { Button, IconButton, Provider } from "react-native-paper";
+import { IconButton, Provider } from "react-native-paper";
+
+const optionStyle = {
+  headerTitleAlign: "center",
+  statusBarColor: "#000080",
+  headerTintColor: "white",
+};
 export default function App() {
   const Stack = createNativeStackNavigator();
   return (
     <Provider>
       <NavigationContainer>
-        <Stack.Navigator>
-          <Stack.Screen name="home" component={Home} />
+        <Stack.Navigator
+          screenOptions={{
+            headerStyle: {
+              backgroundColor: "#000080",
+            },
+            headerTintColor: "#FFFFFF",
+            headerTitleStyle: {
+              fontWeight: "bold",
+            },
+            headerTitleAlign: "center",
+            headerBackTitleVisible: false,
+          }}
+        >
+          <Stack.Screen
+            name="home"
+            component={Home}
+            options={{
+              title: "Course Management System",
+              ...optionStyle,
+            }}
+          />
           <Stack.Screen
             name="Students"
             component={Student}
             options={({ navigation }) => ({
               title: "Student List",
+              ...optionStyle,
               headerRight: () => (
                 <IconButton
                   icon="account-plus-outline"
                   size={35}
-                  style={styles.headerButton}
+                  iconColor="white"
                   onPress={() => navigation.navigate("FormStudent")}
                 />
               ),
             })}
           />
           <Stack.Screen
-            name="Course"
+            name="Courses"
             component={Course}
             options={({ navigation }) => ({
               title: "Courses List",
+              ...optionStyle,
               headerRight: () => (
                 <IconButton
                   icon="account-plus-outline"
                   size={35}
-                  style={styles.headerButton}
                   onPress={() => navigation.navigate("FormCourse")}
                 />
               ),
@@ -49,6 +74,7 @@ export default function App() {
             name="FormStudent"
             component={StudentFormScreen}
             options={({ route }) => ({
+              ...optionStyle,
               title: route.params ? "Edit Student" : "Add Student",
             })}
           />
@@ -56,6 +82,7 @@ export default function App() {
             name="FormCourse"
             component={FormCourse}
             options={({ route }) => ({
+              ...optionStyle,
               title: route.params ? "Edit Course" : "Add Course",
             })}
           />

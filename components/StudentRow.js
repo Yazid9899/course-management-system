@@ -1,11 +1,8 @@
 import React from "react";
-import { Text, View, StyleSheet, TouchableOpacity, Image } from "react-native";
-import styles from "./style";
 import { useNavigation } from "@react-navigation/native";
+import { DataTable, IconButton } from "react-native-paper";
 import axios from "axios";
 import BASE_URL from "../config/baseurl";
-const deleteIcon = require("../assets/delete-icon.png");
-const editIcon = require("../assets/edit-icon.png");
 
 const StudentRow = ({ student, fetchStudent }) => {
   const navigation = useNavigation();
@@ -23,43 +20,19 @@ const StudentRow = ({ student, fetchStudent }) => {
     }
   };
   return (
-    <View style={styles.studentRow}>
-      <View style={styles.idCell}>
-        <Text style={styles.cellText}>{student.id}</Text>
-      </View>
-      <View style={styles.cell}>
-        <Text style={styles.cellText}>{student.name}</Text>
-      </View>
-      <View style={styles.cell}>
-        <Text style={styles.cellText}>{student.birth}</Text>
-      </View>
-      <View style={styles.cell}>
-        <View style={styles.buttonContainer}>
-          <TouchableOpacity
-            onPress={() => {
-              handleEdit();
-            }}
-          >
-            <Image
-              source={editIcon}
-              style={styles.button}
-              resizeMode="contain"
-            />
-          </TouchableOpacity>
-          <TouchableOpacity
-            onPress={() => {
-              handleDelete();
-            }}
-          >
-            <Image
-              source={deleteIcon}
-              style={styles.button}
-              resizeMode="contain"
-            />
-          </TouchableOpacity>
-        </View>
-      </View>
-    </View>
+    <DataTable.Row key={student.id}>
+      <DataTable.Cell>{student.id}</DataTable.Cell>
+      <DataTable.Cell style={{ marginLeft: -40 }}>
+        {student.name}
+      </DataTable.Cell>
+      <DataTable.Cell>{student.birth}</DataTable.Cell>
+      <DataTable.Cell style={{ left: 50 }}>
+        <IconButton icon="account-edit-outline" onPress={() => handleEdit()} />
+      </DataTable.Cell>
+      <DataTable.Cell style={{ left: 10 }}>
+        <IconButton icon="trash-can" onPress={() => handleDelete(student.id)} />
+      </DataTable.Cell>
+    </DataTable.Row>
   );
 };
 

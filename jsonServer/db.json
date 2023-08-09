@@ -1,14 +1,14 @@
 {
   "Students": [
     {
-      "name": "Johnn",
-      "birth": "09/08/2010",
-      "id": 1
+      "id": 1,
+      "name": "John",
+      "birth": "09/08/2001"
     },
     {
       "id": 2,
       "name": "Doe",
-      "birth": "09/02/2009"
+      "birth": "09/08/2011"
     },
     {
       "id": 3,
@@ -26,19 +26,9 @@
       "birth": "09/08/2011"
     },
     {
-      "name": "NAME",
-      "birth": "8/6/2023",
+      "name": "Djdjdhd",
+      "birth": "09/11/2030",
       "id": 6
-    },
-    {
-      "name": "",
-      "birth": "",
-      "id": 7
-    },
-    {
-      "name": "asdas",
-      "birth": "7/5/2023",
-      "id": 8
     }
   ],
   "Courses": [
