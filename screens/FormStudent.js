@@ -1,15 +1,9 @@
 import React, { useEffect, useState } from "react";
-import {
-  View,
-  Text,
-  TextInput,
-  Button,
-  StyleSheet,
-  Platform,
-} from "react-native";
+import { Button, TextInput } from "react-native-paper";
+import { View, StyleSheet, Platform } from "react-native";
+import { useNavigation, useRoute } from "@react-navigation/native";
 import DateTimePicker from "@react-native-community/datetimepicker";
 import axios from "axios";
-import { useNavigation, useRoute } from "@react-navigation/native";
 import BASE_URL from "../config/baseurl";
 
 const StudentFormScreen = () => {
@@ -63,28 +57,27 @@ const StudentFormScreen = () => {
       );
     }
   }, []);
+
   return (
     <>
-      <Text>{route.params ? "Edit Student" : "Add New Student"}</Text>
       <View style={styles.container}>
-        <Text>Name:</Text>
         <TextInput
-          placeholder="Input Student Name"
+          selectionColor="#000080"
+          label="Student Name"
+          placeholder=" Ex: John Doe..."
           value={name}
           onChangeText={(text) => setName(text)}
-          style={styles.input}
+          mode="outlined"
         />
-        <View style={styles.dateInput}>
+        <View>
           <TextInput
-            style={styles.input}
             value={selectedDate.toLocaleDateString()}
             editable={false}
+            mode="outlined"
           />
-          <Button
-            style={styles.datebtn}
-            title="Date of Birth"
-            onPress={showDatePickerHandler}
-          />
+          <Button textColor="black" onPress={showDatePickerHandler}>
+            Select date of birth
+          </Button>
         </View>
         {showDatePicker && (
           <DateTimePicker
@@ -95,9 +88,21 @@ const StudentFormScreen = () => {
           />
         )}
         {Platform.OS === "ios" && showDatePicker && (
-          <Button title="Done" onPress={hideDatePicker} />
+          <Button title="Done" onPress={hideDatePicker}>
+            Done
+          </Button>
         )}
-        <Button title="Add Student" onPress={handleAddStudent} />
+        <Button
+          title="Add Student"
+          onPress={handleAddStudent}
+          buttonColor="#000080"
+          textColor="white"
+          style={{
+            top: 90,
+          }}
+        >
+          Add Student
+        </Button>
       </View>
     </>
   );
@@ -107,7 +112,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     marginHorizontal: 12,
-    marginVertical: 20,
+    marginVertical: 50,
   },
   dateInput: {
     flexDirection: "row",

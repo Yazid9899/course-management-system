@@ -4,6 +4,7 @@ import { View, Text, StyleSheet, FlatList } from "react-native";
 import BASE_URL from "../config/baseurl";
 import { useFocusEffect } from "@react-navigation/native";
 import CourseCard from "../components/CourseCard";
+import LoadingScreen from "../components/LoadingScreen";
 
 const Course = () => {
   const [courses, setCourses] = useState([]);
@@ -35,12 +36,7 @@ const Course = () => {
     }, [])
   );
 
-  if (loading)
-    return (
-      <View>
-        <Text>LOADING..</Text>
-      </View>
-    );
+  if (loading) return <LoadingScreen />;
 
   return (
     <View style={styles.container}>

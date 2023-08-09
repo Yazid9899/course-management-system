@@ -4,6 +4,7 @@ import { ActivityIndicator, DataTable } from "react-native-paper";
 import StudentRow from "../components/StudentRow";
 import { useFocusEffect } from "@react-navigation/native";
 import BASE_URL from "../config/baseurl";
+import LoadingScreen from "../components/LoadingScreen";
 
 const Student = () => {
   const [students, setStudent] = useState([]);
@@ -26,15 +27,7 @@ const Student = () => {
     }, [])
   );
 
-  if (loading)
-    return (
-      <ActivityIndicator
-        style={{ top: 170 }}
-        animating={true}
-        color="#000080"
-        size={70}
-      />
-    );
+  if (loading) return <LoadingScreen />;
 
   return (
     <DataTable>
