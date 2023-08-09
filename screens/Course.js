@@ -1,6 +1,6 @@
-import axios, { Axios } from "axios";
+import axios from "axios";
 import React, { useState } from "react";
-import { View, Text, StyleSheet, FlatList } from "react-native";
+import { View, StyleSheet, FlatList } from "react-native";
 import BASE_URL from "../config/baseurl";
 import { useFocusEffect } from "@react-navigation/native";
 import CourseCard from "../components/CourseCard";
@@ -39,7 +39,7 @@ const Course = () => {
   if (loading) return <LoadingScreen />;
 
   return (
-    <View style={styles.container}>
+    <View style={{ padding: 16 }}>
       <FlatList
         data={courses}
         renderItem={({ item }) => (
@@ -50,23 +50,5 @@ const Course = () => {
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    padding: 16,
-  },
-  heading: {
-    fontSize: 18,
-    fontWeight: "bold",
-    marginBottom: 10,
-  },
-  flatListContainer: {
-    paddingBottom: 16,
-  },
-  card: {
-    marginBottom: 16,
-  },
-});
 
 export default Course;

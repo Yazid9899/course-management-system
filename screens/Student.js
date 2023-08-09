@@ -1,6 +1,6 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
-import { ActivityIndicator, DataTable } from "react-native-paper";
+import React, { useState } from "react";
+import { DataTable } from "react-native-paper";
 import StudentRow from "../components/StudentRow";
 import { useFocusEffect } from "@react-navigation/native";
 import BASE_URL from "../config/baseurl";

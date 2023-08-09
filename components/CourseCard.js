@@ -1,23 +1,25 @@
 import { useNavigation } from "@react-navigation/native";
-import { StyleSheet, Text } from "react-native";
+import { Text } from "react-native";
 import { Card, IconButton } from "react-native-paper";
 
 const CourseCard = ({ course }) => {
   const navigation = useNavigation();
   return (
-    <Card style={styles.card}>
+    <Card style={{ marginBottom: 17 }}>
       <Card.Title
         title={course.name}
+        titleVariant="headlineMedium"
         right={() => (
           <IconButton
             icon="book-edit-outline"
             size={35}
+            iconColor="black"
             onPress={() => navigation.navigate("FormCourse", course)}
           />
         )}
       />
       <Card.Content>
-        <Text>Students:</Text>
+        <Text style={{ fontSize: 15 }}>Attendance:</Text>
         {course.students.map((name, index) => (
           <Text key={index}>- {name}</Text>
         ))}
@@ -26,9 +28,4 @@ const CourseCard = ({ course }) => {
   );
 };
 
-const styles = StyleSheet.create({
-  card: {
-    marginBottom: 16,
-  },
-});
 export default CourseCard;

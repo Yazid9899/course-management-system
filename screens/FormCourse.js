@@ -6,7 +6,7 @@ import {
 import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { ScrollView, StyleSheet, View } from "react-native";
-import { Button, Checkbox, List, Text, TextInput } from "react-native-paper";
+import { Button, Checkbox, List, TextInput } from "react-native-paper";
 import BASE_URL from "../config/baseurl";
 
 const FormCourse = () => {
@@ -66,53 +66,44 @@ const FormCourse = () => {
   }, []);
 
   return (
-    <View style={styles.formContainer}>
+    <View style={{ top: 40, marginHorizontal: 20 }}>
       <TextInput
+        selectionColor="#000080"
         label="Course Name"
+        placeholder=" Ex: Science"
         value={courseName}
         onChangeText={setCourseName}
+        mode="outlined"
       />
       <List.Section title="Students:">
-        <List.Accordion title="Select students here">
-          <ScrollView style={styles.scrollView}>
+        <List.Accordion title="Select students">
+          <ScrollView>
             {students.map((student) => (
-              <List.Item
-                style={styles.listStudent}
-                key={student.id}
-                title={student.name}
-                left={() => (
-                  <Checkbox
-                    status={
-                      selectedStudents.includes(student.id)
-                        ? "checked"
-                        : "unchecked"
-                    }
-                    onPress={() => handleSelect(student.id)}
-                  />
-                )}
+              <Checkbox.Item
+                color="#000080"
+                labelVariant={"bodyMedium"}
+                label={student.name}
+                status={
+                  selectedStudents.includes(student.id)
+                    ? "checked"
+                    : "unchecked"
+                }
+                onPress={() => handleSelect(student.id)}
               />
             ))}
           </ScrollView>
         </List.Accordion>
       </List.Section>
-      <Button mode="contained" onPress={handleSubmit}>
+      <Button
+        mode="contained"
+        buttonColor="#000080"
+        textColor="white"
+        onPress={handleSubmit}
+      >
         {editMode ? "Update Course" : "Add Course"}
       </Button>
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  formContainer: {
-    marginVertical: 50,
-  },
-  listStudent: {
-    marginVertical: -10,
-    marginLeft: 7,
-  },
-  scrollView: {
-    maxHeight: 150,
-  },
-});
 
 export default FormCourse;

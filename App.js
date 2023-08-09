@@ -63,8 +63,9 @@ export default function App() {
               ...optionStyle,
               headerRight: () => (
                 <IconButton
-                  icon="account-plus-outline"
-                  size={35}
+                  icon="book-plus-outline"
+                  size={28}
+                  iconColor="white"
                   onPress={() => navigation.navigate("FormCourse")}
                 />
               ),
