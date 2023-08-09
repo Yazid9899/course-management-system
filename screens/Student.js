@@ -42,7 +42,9 @@ const Student = () => {
       </View>
       <FlatList
         data={students}
-        renderItem={({ item }) => <StudentRow student={item} />}
+        renderItem={({ item }) => (
+          <StudentRow student={item} fetchStudent={fetchStudent} />
+        )}
         keyExtractor={(item) => item?.id.toString()}
       />
     </View>

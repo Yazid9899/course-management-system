@@ -2,12 +2,25 @@ import React from "react";
 import { Text, View, StyleSheet, TouchableOpacity, Image } from "react-native";
 import styles from "./style";
 import { useNavigation } from "@react-navigation/native";
+import axios from "axios";
+import BASE_URL from "../config/baseurl";
 const deleteIcon = require("../assets/delete-icon.png");
 const editIcon = require("../assets/edit-icon.png");
-const StudentRow = ({ student }) => {
+
+const StudentRow = ({ student, fetchStudent }) => {
   const navigation = useNavigation();
+
   const handleEdit = () => {
     navigation.push("StudentForm", { student });
+  };
+
+  const handleDelete = async () => {
+    try {
+      await axios.delete(`${BASE_URL}/Students/${student.id}`);
+      fetchStudent();
+    } catch (err) {
+      console.log(err);
+    }
   };
   return (
     <View style={styles.studentRow}>
@@ -33,7 +46,11 @@ const StudentRow = ({ student }) => {
               resizeMode="contain"
             />
           </TouchableOpacity>
-          <TouchableOpacity onPress={() => {}}>
+          <TouchableOpacity
+            onPress={() => {
+              handleDelete();
+            }}
+          >
             <Image
               source={deleteIcon}
               style={styles.button}
